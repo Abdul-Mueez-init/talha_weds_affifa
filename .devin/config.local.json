@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(python)",
+      "Exec(grep)",
+      "Exec(curl)",
+      "Exec(ls)",
+      "Exec(head)",
+      "Exec(cat)",
+      "Exec(mkdir)",
+      "Exec(sed)",
+      "Exec(node)",
+      "Exec(tail)",
+      "Exec(file)"
+    ]
+  }
+}
