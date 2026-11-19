@@ -49,7 +49,7 @@ window.INVITATION_CONFIG = {
   },
 
   copy: {
-    bismillah: "﷽",
+        bismillah: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
     bismillahTranslation:
       "",
     welcomeLine: "With joyful hearts, we invite you\nto the wedding of",
