@@ -28,7 +28,7 @@ window.INVITATION_CONFIG = {
   motion: "full",
 
   site: {
-    title: "Our Wedding Invitation",
+    title: "Talha & Afifa — Wedding Invitation",
     description:
       "You are warmly invited to celebrate our wedding with us.",
   },
@@ -123,8 +123,8 @@ dressCode: {
       dateLine: "FRIDAY · DECEMBER 25, 2026",
       schedule: [
         { time: "6:00 PM", label: "Arrival of Guests" },
-        { time: "7:30 PM", label: "Mehendi Lagayi" },
-        { time: "8:30 PM", label: "Refreshment" },
+        { time: "7:30 PM", label: "Mehndi Lagayi" },
+        { time: "8:30 PM", label: "Refreshments" },
         { time: "9:30 PM", label: "Family Portraits & Group Photos" },
         { time: "10:00 PM", label: "Finish" },
       ],
@@ -188,7 +188,7 @@ dressCode: {
       panelTitle: "ولیمہ",
       dateLine: "SATURDAY · DECEMBER 26, 2026",
       schedule: [
-        { time: "6:00 PM", label: "Guests Arrival" },
+        { time: "6:00 PM", label: "Arrival of Guests" },
         { time: "6:30 PM", label: "The Couple's Grand Entrance" },
         { time: "7:30 PM", label: "Greetings" },
         { time: "8:00 PM", label: "Dinner" },

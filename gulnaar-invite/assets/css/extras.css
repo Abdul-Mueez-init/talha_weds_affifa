@@ -141,6 +141,9 @@
   font-weight: 600;
   color: var(--ink);
 }
+.x-sec--etq .x-head { margin-bottom: 4px; }
+.x-sec--etq #etiquetteIntro { margin-top: 20px; }
+.x-sec--etq .x-etq { margin-top: 30px; }
 .x-etq__item p {
   margin: 0;
   font-family: var(--font-display);
