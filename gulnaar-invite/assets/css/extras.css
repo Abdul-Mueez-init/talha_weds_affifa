@@ -724,7 +724,7 @@
 
 /* baraat: three buttons — stacked until they genuinely fit */
 .event-panel--groups .event-panel__actions { flex-direction: column; }
-.event-panel--groups .event-panel__btn { letter-spacing: .12em; }
+.event-panel--groups .event-panel__btn { letter-spacing: .12em; flex: none; }
 @media (min-width: 560px) {
   .event-panel--groups .event-panel__actions {
     flex-direction: row;

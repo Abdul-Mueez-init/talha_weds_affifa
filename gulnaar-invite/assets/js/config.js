@@ -259,6 +259,7 @@ dressCode: {
     items: [
       { icon: "dress", title: "Modest attire", text: "Please choose attire that honours the joy and sanctity of the occasion." },
       { icon: "clock", title: "Arrive on time", text: "Guests arrive from 6:00 PM, and the couple makes their grand entrance at 6:30 PM — come a little early so you don't miss it." },
+      { icon: "heart", title: "Greet the couple", text: "Please take your turn to meet the couple on stage, greet them, and capture a photograph with them." },
       { icon: "camera", title: "Photographs with grace", text: "Capture the memories, and kindly give the official photographers space to do their work." },
       { icon: "plate", title: "Stay for the feast", text: "The Walima dinner is served at 8:00 PM — please stay and share the feast with us." },
     ],
