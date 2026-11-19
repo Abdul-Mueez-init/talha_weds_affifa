@@ -1626,5 +1626,8 @@ document.addEventListener("dragstart", (event) => {
 
   }
 
+  // Shared celebration effects for other modules (e.g. the RSVP success state).
+  window.__invitationFx = { createPetalShower, celebrate };
+
   document.addEventListener("DOMContentLoaded", initialize);
 })();

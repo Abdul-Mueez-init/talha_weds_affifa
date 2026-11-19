@@ -230,23 +230,12 @@
     if (on("message")) parts.push(field("Message", note, "rsvpNote2"));
     form.append(...parts, trap, error, submit);
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      error.textContent = "";
-
-      if (!nameInput.value.trim()) {
-        error.textContent = "Please tell us your name.";
-        nameInput.focus();
-        return;
-      }
-      if (trap.value) return showDone(false);
-
+    const whatsappText = () => {
       const picked = form.querySelector('input[name="attending"]:checked');
       const coming = picked && picked.value === attendance[0];
       const couple = config.couple || {};
       const names = `${shortName(couple.groom)} & ${shortName(couple.bride)}`;
-
-      const text = [
+      return [
         `Assalamu Alaikum! RSVP for ${names}`,
         `Name: ${nameInput.value.trim()}`,
         `Response: ${picked ? picked.value : ""}`,
@@ -256,29 +245,71 @@
       ]
         .filter(Boolean)
         .join("\n");
+    };
 
-      const host = window.__nikahHost;
-      if (host && host.rsvp) {
-        host.rsvp({
-          guestName: nameInput.value.trim(),
-          phone: phoneInput.value.trim(),
-          email: emailInput.value.trim(),
-          attending: coming ? "yes" : "no",
-          guestCount: coming ? parseInt(guestSelect.value, 10) || 1 : 1,
-          message: note.value.trim(),
-          website: trap.value,
-        });
-        showDone(coming);
+    const openWhatsApp = () => {
+      if (!target) return;
+      window.open(
+        `https://wa.me/${target.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText())}`,
+        "_blank",
+        "noopener",
+      );
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      error.textContent = "";
+      error.classList.remove("is-note");
+
+      if (!nameInput.value.trim()) {
+        error.textContent = "Please tell us your name.";
+        nameInput.focus();
         return;
       }
+      if (trap.value) return showSent();
 
-      showDone(coming);
-      if (target) {
-        window.open(`https://wa.me/${target.replace(/\D/g, "")}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+      const picked = form.querySelector('input[name="attending"]:checked');
+      const coming = picked && picked.value === attendance[0];
+
+      submit.disabled = true;
+      submit.textContent = "Sending…";
+
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/dr.talha02@gmail.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            Name: nameInput.value.trim(),
+            Email: emailInput.value.trim(),
+            Phone: phoneInput.value.trim(),
+            Attendance: picked ? picked.value : "",
+            Guests: coming ? guestSelect.value : "",
+            Message: note.value.trim(),
+            _subject: "New RSVP — Talha & Afifa Wedding",
+            _template: "table",
+            _captcha: "false",
+            _honey: "",
+          }),
+        });
+        if (!response.ok) throw new Error(`RSVP failed: ${response.status}`);
+
+        const fx = window.__invitationFx;
+        if (fx) {
+          fx.createPetalShower();
+          fx.celebrate(form);
+        }
+        showSent();
+      } catch (err) {
+        submit.disabled = false;
+        submit.textContent = "Send my RSVP";
+        error.textContent =
+          "We couldn't send that just now — WhatsApp opened so you can finish your RSVP.";
+        error.classList.add("is-note");
+        openWhatsApp();
       }
     });
 
-    function showDone(coming) {
+    function showSent() {
       form.replaceChildren();
       form.classList.add("is-done");
       const tick = el("span", "x-rsvpf__tick");
@@ -292,13 +323,10 @@
       });
       form.append(
         tick,
-        el("h3", "", coming ? "Jazak Allah Khair" : "Thank you for letting us know"),
         el(
-          "p",
-          "",
-          coming
-            ? "Your response is noted. We cannot wait to celebrate with you, In Sha Allah."
-            : "You will be missed on the day — please keep us in your duas.",
+          "h3",
+          "x-rsvpf__success",
+          "Your presence is confirmed, and we would be delighted to host you.",
         ),
         again,
       );
