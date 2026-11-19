@@ -97,7 +97,7 @@ window.INVITATION_CONFIG = {
 dressCode: {
   title: "Festive Formal",
   description:
-    "Traditional or formal attire is encouraged. Sarees, lehengas, anarkalis, sherwanis, kurtas, suits, and formal dresses are all welcome. We kindly ask guests to avoid overly casual attire and white or ivory.",
+    "Traditional Pakistani or formal attire is warmly encouraged. For Ladies: Sarhi, Maxi, lehenga, gharara, or elegant formal ensembles. For Gentlemen: shalwar kameez with a waistcoat, or a suit. We kindly request modest dressing in keeping with the spirit of the occasion, and ask guests to avoid overly casual attire.",
   swatches: [
     "#5D4C3E",
     "#8F917D",

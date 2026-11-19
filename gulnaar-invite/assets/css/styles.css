@@ -1982,6 +1982,12 @@ main#invitation { background: var(--a-bg); }
 .x-dress { text-align: center; }
 .x-dress .x-head, .x-dress__copy { text-align: center; }
 .x-dress__copy p { margin-inline: auto; }
+.x-dress > .x-dress__copy:only-child { grid-column: 1 / -1; }
+@media (min-width: 820px) {
+  .x-dress > .x-dress__copy:only-child .x-head,
+  .x-dress > .x-dress__copy:only-child { text-align: center; }
+  .x-dress > .x-dress__copy:only-child p { margin-inline: auto; }
+}
 
 /* ---- closing ---- */
 .x-sec--d { background: color-mix(in srgb, var(--lavender) 30%, var(--ivory)); --ink: var(--plum); --ink-2: color-mix(in srgb, var(--plum) 72%, var(--ivory)); --accent: var(--mauve); --gold: color-mix(in srgb, var(--champagne) 90%, var(--plum)); --line: var(--line); --card: var(--card); --day-on: #fff; --btn-bg: var(--mauve); --btn-on: #fff; color: var(--plum); }
