@@ -307,7 +307,11 @@
 
   /* ---------- mehendi: full-width invitation panel ---------- */
   function buildEventPanel(event, index) {
-    const panel = el("article", "event-panel rv");
+    const hasGroups = Array.isArray(event.groups) && event.groups.length;
+    const panel = el(
+      "article",
+      "event-panel rv" + (hasGroups ? " event-panel--groups" : ""),
+    );
     panel.style.setProperty("--i", index);
 
     const mandala = el("span", "event-panel__mandala");
@@ -336,9 +340,9 @@
     panel.append(el("span", "event-panel__divider"));
     if (event.dateLine) panel.append(el("p", "event-panel__date", event.dateLine));
 
-    if (Array.isArray(event.schedule) && event.schedule.length) {
+    const renderRows = (rows) => {
       const list = el("ul", "event-panel__schedule");
-      event.schedule.forEach((row) => {
+      (rows || []).forEach((row) => {
         const item = el("li");
         item.append(
           el("span", "event-panel__time", row.time || ""),
@@ -346,7 +350,21 @@
         );
         list.append(item);
       });
-      panel.append(list);
+      return list;
+    };
+
+    if (hasGroups) {
+      const wrap = el("div", "event-panel__groups");
+      event.groups.forEach((group) => {
+        const block = el("div", "event-panel__group");
+        if (group.label) block.append(el("p", "event-panel__group-label", group.label));
+        if (group.address) block.append(el("p", "event-panel__group-address", group.address));
+        block.append(renderRows(group.rows));
+        wrap.append(block);
+      });
+      panel.append(wrap);
+    } else if (Array.isArray(event.schedule) && event.schedule.length) {
+      panel.append(renderRows(event.schedule));
     }
 
     if (event.location || event.address) {
@@ -357,19 +375,36 @@
     }
 
     const actions = el("div", "event-panel__actions");
-    if (event.mapUrl) {
-      const map = el("a", "event-panel__btn event-panel__btn--map", "VIEW ON MAP");
-      map.href = event.mapUrl;
-      map.target = "_blank";
-      map.rel = "noreferrer";
-      actions.append(map);
-    }
-    if (event.icsHref) {
-      const cal = el("a", "event-panel__btn event-panel__btn--cal", "ADD TO CALENDAR");
-      cal.href = event.icsHref;
-      cal.setAttribute("download", "mehendi.ics");
-      actions.append(cal);
-    }
+    const buttons = Array.isArray(event.panelButtons) && event.panelButtons.length
+      ? event.panelButtons.map((b) => ({
+          label: b.label,
+          url: b.url,
+          kind: b.kind === "map" ? "map" : "outline",
+          download: b.download,
+        }))
+      : [
+          ...(event.mapUrl
+            ? [{ label: "VIEW ON MAP", url: event.mapUrl, kind: "map" }]
+            : []),
+          ...(event.icsHref
+            ? [{ label: "ADD TO CALENDAR", url: event.icsHref, kind: "outline", download: "mehendi.ics" }]
+            : []),
+        ];
+    buttons.forEach((b) => {
+      if (!b.url) return;
+      const btn = el(
+        "a",
+        "event-panel__btn " + (b.kind === "map" ? "event-panel__btn--map" : "event-panel__btn--cal"),
+        b.label,
+      );
+      btn.href = b.url;
+      if (b.download) btn.setAttribute("download", b.download);
+      else {
+        btn.target = "_blank";
+        btn.rel = "noreferrer";
+      }
+      actions.append(btn);
+    });
     if (actions.children.length) panel.append(actions);
 
     return panel;
@@ -400,20 +435,7 @@
       return icons.rings;
     };
 
-    const wedding = config.wedding || {};
-    const venue = config.venue || {};
     const list = [];
-
-    list.push({
-      name: "Nikah",
-      subtitle: "The wedding ceremony",
-      date: wedding.date,
-      time: wedding.time,
-      place: [venue.name, venue.address].filter(Boolean).join(", "),
-      mapUrl: venue.mapUrl,
-      stamp: Date.parse(wedding.isoDate || wedding.date || "") || 0,
-      main: true,
-    });
 
     (config.preWeddingEvents || []).forEach((event) => {
       list.push({
@@ -433,6 +455,8 @@
         groomName: event.groomName,
         dateLine: event.dateLine,
         schedule: event.schedule,
+        groups: event.groups,
+        panelButtons: event.panelButtons,
         icsHref: event.icsHref,
       });
     });
@@ -458,6 +482,8 @@
           groomName: event.groomName,
           dateLine: event.dateLine,
           schedule: event.schedule,
+          groups: event.groups,
+          panelButtons: event.panelButtons,
           icsHref: event.icsHref,
         });
       });

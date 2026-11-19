@@ -631,6 +631,41 @@
   .event-panel { padding: 32px 32px 38px; }
 }
 
+/* ---- baraat: two-venue schedule groups ---- */
+.event-panel__groups { margin: 0 auto 22px; max-width: 400px; }
+.event-panel__group + .event-panel__group { margin-top: 20px; }
+.event-panel__group-label {
+  margin: 0 0 3px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mauve);
+}
+.event-panel__group-address {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .95rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--plum) 70%, var(--ivory));
+}
+.event-panel__group .event-panel__schedule { margin-bottom: 0; text-align: left; }
+.event-panel__group .event-panel__schedule li:first-child { padding-top: 6px; }
+
+/* baraat: three buttons — stacked until they genuinely fit */
+.event-panel--groups .event-panel__actions { flex-direction: column; }
+.event-panel--groups .event-panel__btn { letter-spacing: .12em; }
+@media (min-width: 560px) {
+  .event-panel--groups .event-panel__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .event-panel--groups .event-panel__btn { flex: 1 1 200px; }
+}
+
 
 /* welcome heading: smaller script so the title sits with the text under it */
 .x-letter .x-title {

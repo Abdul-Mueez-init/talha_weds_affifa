@@ -87,29 +87,6 @@ window.INVITATION_CONFIG = {
     gallery: [],
   },
 
-  program: [
-    {
-      time: "6:30 PM",
-      title: "Guest Arrival",
-      note: "Welcome refreshments",
-    },
-    {
-      time: "07:00 PM",
-      title: "Nikah Ceremony",
-      note: "Promises shared with family blessings",
-    },
-    {
-      time: "07:30 PM",
-      title: "Family Blessings",
-      note: "Greetings & photographs",
-    },
-    {
-      time: "08:00 PM",
-      title: "Dinner",
-      note: "A feast shared with love",
-    },
-  ],
-
   venue: {
     name: "Deewan e Khas Event Hall",
     address:
@@ -152,6 +129,53 @@ dressCode: {
         { time: "10:00 PM", label: "Finish" },
       ],
       icsHref: "./assets/calendar/mehendi.ics",
+    },
+    {
+      name: "Baraat",
+      date: "December 26, 2026",
+      panel: true,
+      panelTitle: "برات",
+      dateLine: "SATURDAY · DECEMBER 26, 2026",
+      groups: [
+        {
+          label: "AT THE GROOM'S RESIDENCE",
+          address: "Ahmed General Hospital, Bahawalnagar Highway, Chishtian",
+          rows: [
+            { time: "11:00 AM", label: "Sehra Bandi" },
+            { time: "12:30 PM", label: "Departure of Baraat" },
+          ],
+        },
+        {
+          label: "AT DEEWAN E KHAS EVENT HALL",
+          address: "13 Gajyani Road, Chishtian",
+          rows: [
+            { time: "1:00 PM", label: "Reception & Welcome of Baraat" },
+            { time: "2:00 PM", label: "Nikkah" },
+            { time: "2:30 PM", label: "Lunch" },
+            { time: "4:00 PM", label: "Traditions, Greetings & Blessings" },
+            { time: "5:00 PM", label: "Rukhsati" },
+          ],
+        },
+      ],
+      panelButtons: [
+        {
+          label: "RESIDENCE — VIEW ON MAP",
+          url: "https://maps.app.goo.gl/qFugJPjAhSbY3bCB8",
+          kind: "outline",
+        },
+        {
+          label: "EVENT HALL — VIEW ON MAP",
+          url: "https://maps.app.goo.gl/b5Kgh7GJ6gUaaRZq8?g_st=iw",
+          kind: "map",
+        },
+        {
+          label: "ADD TO CALENDAR",
+          url: "./assets/calendar/baraat.ics",
+          kind: "outline",
+          download: "baraat.ics",
+        },
+      ],
+      icsHref: "./assets/calendar/baraat.ics",
     },
     {
       name: "Walima",
