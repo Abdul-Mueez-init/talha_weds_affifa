@@ -214,10 +214,10 @@ dressCode: {
 
   rsvp: {
     deadline: "Kindly respond by April 15, 2027",
-    contact: "For assistance, call +91 00000 00000",
+    contact: "For assistance, call +92 318 4329376",
     // Your WhatsApp number WITH country code, digits only or with +.
     // Guests' RSVP form opens WhatsApp with a pre-filled message.
-    whatsapp: "+91 00000 00000",
+    whatsapp: "+92 318 4329376",
     fields: {
       name: "Your full name",
       email: "Email address",
