@@ -810,8 +810,8 @@ document.addEventListener("dragstart", (event) => {
     setCoupleNames(select("#welcomeSignature"));
     setCoupleNames(select("#closingNames"));
 
-    select("#closingDetails").textContent =
-      `${config.wedding.date} · ${config.venue.name}`;
+    select("#closingDetails").innerHTML =
+      "© 2026 All Rights Reserved<br>Developed by Abdul Moiz (Honourable Mention)";
 
     selectAll("[data-map-link]").forEach((link) => {
       link.href = config.venue.mapUrl;
