@@ -244,7 +244,7 @@
       const picked = form.querySelector('input[name="attending"]:checked');
       const coming = picked && picked.value === attendance[0];
       const couple = config.couple || {};
-      const names = `${shortName(couple.bride)} & ${shortName(couple.groom)}`;
+      const names = `${shortName(couple.groom)} & ${shortName(couple.bride)}`;
 
       const text = [
         `Assalamu Alaikum! RSVP for ${names}`,

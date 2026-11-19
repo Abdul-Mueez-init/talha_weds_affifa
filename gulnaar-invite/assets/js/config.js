@@ -34,8 +34,8 @@ window.INVITATION_CONFIG = {
   },
 
   couple: {
-    brideInitial: "B",
-    groomInitial: "G",
+    brideInitial: "A",
+    groomInitial: "T",
     groom: {
       name: "Dr. Talha Shahid",
       relation: "Son of",
@@ -199,8 +199,8 @@ dressCode: {
 
   // side: "bride" | "groom". Names and parents are taken from the couple block above.
   contacts: [
-    { side: "bride", phones: ["+91 00000 00000"] },
     { side: "groom", phones: ["+91 00000 00000"] },
+    { side: "bride", phones: ["+91 00000 00000"] },
   ],
 
   theme: {

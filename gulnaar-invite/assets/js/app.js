@@ -138,11 +138,11 @@ document.addEventListener("dragstart", (event) => {
 
   function setCoupleNames(element) {
       element.replaceChildren(
-        document.createTextNode(shortName(config.couple.bride)),
+        document.createTextNode(shortName(config.couple.groom)),
         document.createTextNode(" "),
         createElement("span", "", "&"),
         document.createTextNode(" "),
-        document.createTextNode(shortName(config.couple.groom)),
+        document.createTextNode(shortName(config.couple.bride)),
       );
     }
 
@@ -842,8 +842,8 @@ document.addEventListener("dragstart", (event) => {
     if (!mount) return;
 
     [
-      [config.couple.bride, "The bride"],
       [config.couple.groom, "The groom"],
+      [config.couple.bride, "The bride"],
     ].forEach(([person, fallbackRole], index) => {
       if (!person.parents) return;
       // The editor's "groom's name first" swaps the slots, so the label
@@ -1194,7 +1194,7 @@ document.addEventListener("dragstart", (event) => {
 
     const end = new Date(start.getTime() + 4 * 3600000);
     const stamp = (date) => date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    const title = `${shortName(config.couple.bride)} & ${shortName(config.couple.groom)} — ${config.site.title.split("—").pop().trim()}`;
+    const title = `${shortName(config.couple.groom)} & ${shortName(config.couple.bride)} — ${config.site.title.split("—").pop().trim()}`;
     const place = [config.venue.name, config.venue.address].filter(Boolean).join(", ");
 
     const google = select("#googleCal");
