@@ -231,6 +231,25 @@
 .x-trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .x-rsvpf__error { min-height: 1.2em; margin: 0; font-size: .92rem; color: #ff8d8d; }
 .x-rsvpf__error.is-note { color: var(--ink-2, #8a6f63); }
+.x-rsvpf__wa {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 0 24px;
+  border: 1.5px solid var(--mauve);
+  border-radius: 999px;
+  color: var(--mauve);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-decoration: none;
+  transition: background .3s, color .3s;
+}
+.x-rsvpf__wa:hover,
+.x-rsvpf__wa:focus-visible { background: var(--mauve); color: #fff; }
 .x-rsvpf.is-done .x-rsvpf__success {
   margin: 0;
   font-family: var(--font-script);

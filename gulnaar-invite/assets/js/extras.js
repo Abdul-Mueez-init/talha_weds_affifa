@@ -247,13 +247,14 @@
         .join("\n");
     };
 
+    const whatsappUrl = () =>
+      target
+        ? `https://wa.me/${target.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText())}`
+        : "";
+
     const openWhatsApp = () => {
-      if (!target) return;
-      window.open(
-        `https://wa.me/${target.replace(/\D/g, "")}?text=${encodeURIComponent(whatsappText())}`,
-        "_blank",
-        "noopener",
-      );
+      const url = whatsappUrl();
+      if (url) window.open(url, "_blank", "noopener");
     };
 
     form.addEventListener("submit", async (event) => {
@@ -309,6 +310,14 @@
         error.textContent =
           "We couldn't send that just now — WhatsApp opened so you can finish your RSVP.";
         error.classList.add("is-note");
+        const waUrl = whatsappUrl();
+        if (waUrl) {
+          const wa = el("a", "x-rsvpf__wa", "FINISH ON WHATSAPP");
+          wa.href = waUrl;
+          wa.target = "_blank";
+          wa.rel = "noopener";
+          error.append(wa);
+        }
         openWhatsApp();
       } finally {
         clearTimeout(timer);
