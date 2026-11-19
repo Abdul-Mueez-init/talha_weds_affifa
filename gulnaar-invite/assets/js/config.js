@@ -70,11 +70,11 @@ window.INVITATION_CONFIG = {
   wedding: {
     // IMPORTANT: use a valid ISO date WITH the local UTC offset
     // (India = +05:30) so the countdown is accurate.
-    isoDate: "2027-05-15T19:00:00+05:30",
+    isoDate: "2026-12-26T13:00:00+05:00",
     date: "December 26, 2026",
     day: "Saturday",
     time: "01:00 PM to 5:00 PM",
-    timezone: "IST",
+    timezone: "PKT",
   },
 
   media: {
