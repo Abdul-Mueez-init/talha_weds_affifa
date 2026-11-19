@@ -180,10 +180,35 @@ dressCode: {
     {
       name: "Walima",
       date: "December 26, 2026",
-      time: "7:30 PM",
+      time: "6:00 PM to 10:00 PM",
       location: "Deewan e Khas Event Hall",
       address: "13 Gajyani Road, Chishtian",
       mapLink: "https://maps.app.goo.gl/b5Kgh7GJ6gUaaRZq8?g_st=iw",
+      panel: true,
+      panelTitle: "ولیمہ",
+      dateLine: "SATURDAY · DECEMBER 26, 2026",
+      schedule: [
+        { time: "6:00 PM", label: "Guests Arrival" },
+        { time: "6:30 PM", label: "The Couple's Grand Entrance" },
+        { time: "7:30 PM", label: "Greetings" },
+        { time: "8:00 PM", label: "Dinner" },
+        { time: "9:00 PM", label: "Photo Session" },
+        { time: "10:00 PM", label: "The Send-off" },
+      ],
+      panelButtons: [
+        {
+          label: "VIEW ON MAP",
+          url: "https://maps.app.goo.gl/b5Kgh7GJ6gUaaRZq8?g_st=iw",
+          kind: "map",
+        },
+        {
+          label: "ADD TO CALENDAR",
+          url: "./assets/calendar/walima.ics",
+          kind: "outline",
+          download: "walima.ics",
+        },
+      ],
+      icsHref: "./assets/calendar/walima.ics",
     },
   ],
 

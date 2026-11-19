@@ -328,9 +328,10 @@
       "</svg>";
     panel.append(mandala);
 
-    const title = el("p", "event-panel__title", event.panelTitle || "مہندی");
+    const title = el("p", "event-panel__title notranslate", event.panelTitle || "مہندی");
     title.lang = "ur";
     title.dir = "rtl";
+    title.setAttribute("translate", "no");
     panel.append(title);
 
     if (event.hosts) panel.append(el("p", "event-panel__hosts", event.hosts));
@@ -510,6 +511,8 @@
         const ar = el("p", "x-event__ar", arabicText);
         ar.lang = "ar";
         ar.dir = "rtl";
+        ar.classList.add("notranslate");
+        ar.setAttribute("translate", "no");
         card.append(ar);
       }
       card.append(el("h3", "x-event__name", event.name));
