@@ -274,10 +274,14 @@
       submit.disabled = true;
       submit.textContent = "Sending…";
 
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 10000);
+
       try {
         const response = await fetch("https://formsubmit.co/ajax/dr.talha02@gmail.com", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
+          signal: controller.signal,
           body: JSON.stringify({
             Name: nameInput.value.trim(),
             Email: emailInput.value.trim(),
@@ -306,6 +310,8 @@
           "We couldn't send that just now — WhatsApp opened so you can finish your RSVP.";
         error.classList.add("is-note");
         openWhatsApp();
+      } finally {
+        clearTimeout(timer);
       }
     });
 
