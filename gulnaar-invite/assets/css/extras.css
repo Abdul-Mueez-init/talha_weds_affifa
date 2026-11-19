@@ -477,6 +477,161 @@
 .x-event__map:hover { background: var(--accent); color: #fff; }
 
 
+/* =====================================================================
+   MEHENDI — full-width invitation panel (mobile-first)
+   ===================================================================== */
+.event-panel {
+  grid-column: 1 / -1;
+  position: relative;
+  padding: 24px 20px 28px;
+  text-align: center;
+  background: linear-gradient(180deg, #fffbf3, var(--ivory));
+  border: 1px solid #e4d3b8;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.event-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--mauve), var(--champagne) 50%, var(--mauve));
+  border-radius: 18px 18px 0 0;
+}
+.event-panel__mandala {
+  display: block;
+  margin: 0 auto 2px;
+  line-height: 0;
+}
+.event-panel__mandala svg { display: block; }
+.event-panel__title {
+  margin: 2px 0 0;
+  padding-top: 12px;
+  font-family: "Noto Nastaliq Urdu", "Geeza Pro", serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 2.2;
+  color: var(--mauve);
+}
+.event-panel__hosts {
+  margin: 8px 0 0;
+  font-family: var(--font-script);
+  font-size: clamp(19px, 5.4vw, 24px);
+  line-height: 1.25;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--mauve) 58%, var(--plum));
+}
+.event-panel__invite {
+  margin: 10px auto 0;
+  max-width: 24em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--plum) 70%, var(--ivory));
+}
+.event-panel__groom {
+  margin: 12px 0 0;
+  font-family: var(--font-script);
+  font-size: clamp(40px, 11vw, 60px);
+  line-height: 1.12;
+  color: color-mix(in srgb, var(--mauve) 58%, var(--plum));
+}
+.event-panel__divider {
+  display: block;
+  width: 64px;
+  height: 1px;
+  margin: 16px auto;
+  background: linear-gradient(90deg, var(--mauve), var(--champagne));
+}
+.event-panel__date {
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--champagne) 60%, var(--plum));
+}
+.event-panel__schedule {
+  list-style: none;
+  margin: 0 auto 22px;
+  padding: 0;
+  max-width: 400px;
+  text-align: left;
+}
+.event-panel__schedule li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px dotted #cdbfa3;
+}
+.event-panel__schedule li:last-child { border-bottom: 0; padding-bottom: 0; }
+.event-panel__time {
+  flex: 0 0 88px;
+  font-weight: 700;
+  font-size: .92rem;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.event-panel__what {
+  font-weight: 600;
+  font-size: .92rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--champagne) 60%, var(--plum));
+}
+.event-panel__venue { margin: 0 0 24px; }
+.event-panel__venue strong {
+  display: block;
+  font-weight: 700;
+  color: var(--plum);
+}
+.event-panel__venue span {
+  display: block;
+  margin-top: 2px;
+  color: color-mix(in srgb, var(--plum) 72%, var(--ivory));
+}
+.event-panel__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.event-panel__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .8rem;
+  letter-spacing: .14em;
+  text-decoration: none;
+  transition: filter .25s ease, background .25s ease, color .25s ease;
+}
+.event-panel__btn--map { background: var(--champagne); color: var(--plum); }
+.event-panel__btn--map:hover { filter: brightness(1.06); }
+.event-panel__btn--cal {
+  background: transparent;
+  border: 1.5px solid var(--mauve);
+  color: var(--mauve);
+}
+.event-panel__btn--cal:hover { background: color-mix(in srgb, var(--mauve) 10%, transparent); }
+
+@media (min-width: 480px) {
+  .event-panel__actions { flex-direction: row; justify-content: center; }
+  .event-panel__btn { flex: 0 1 240px; }
+}
+@media (min-width: 700px) {
+  .event-panel { padding: 32px 32px 38px; }
+}
+
+
 /* welcome heading: smaller script so the title sits with the text under it */
 .x-letter .x-title {
   font-size: clamp(2.5rem, 8.6vw, 4.4rem);

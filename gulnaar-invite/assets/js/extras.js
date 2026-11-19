@@ -305,6 +305,76 @@
     }
   }
 
+  /* ---------- mehendi: full-width invitation panel ---------- */
+  function buildEventPanel(event, index) {
+    const panel = el("article", "event-panel rv");
+    panel.style.setProperty("--i", index);
+
+    const mandala = el("span", "event-panel__mandala");
+    let petals = "";
+    for (let i = 0; i < 8; i += 1) {
+      petals += `<ellipse cx="28" cy="9" rx="2.6" ry="6.5" transform="rotate(${i * 45} 28 28)"/>`;
+    }
+    mandala.innerHTML =
+      '<svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false">' +
+      '<circle cx="28" cy="28" r="25" fill="none" stroke="#B83A62" stroke-width="1.1"/>' +
+      '<circle cx="28" cy="28" r="18" fill="none" stroke="#B83A62" stroke-width="0.8" opacity="0.7"/>' +
+      `<g fill="none" stroke="#B83A62" stroke-width="0.9" opacity="0.75">${petals}</g>` +
+      '<circle cx="28" cy="28" r="3.6" fill="#D6A03C"/>' +
+      "</svg>";
+    panel.append(mandala);
+
+    const title = el("p", "event-panel__title", event.panelTitle || "مہندی");
+    title.lang = "ur";
+    title.dir = "rtl";
+    panel.append(title);
+
+    if (event.hosts) panel.append(el("p", "event-panel__hosts", event.hosts));
+    if (event.inviteLine) panel.append(el("p", "event-panel__invite", event.inviteLine));
+    if (event.groomName) panel.append(el("p", "event-panel__groom", event.groomName));
+
+    panel.append(el("span", "event-panel__divider"));
+    if (event.dateLine) panel.append(el("p", "event-panel__date", event.dateLine));
+
+    if (Array.isArray(event.schedule) && event.schedule.length) {
+      const list = el("ul", "event-panel__schedule");
+      event.schedule.forEach((row) => {
+        const item = el("li");
+        item.append(
+          el("span", "event-panel__time", row.time || ""),
+          el("span", "event-panel__what", row.label || ""),
+        );
+        list.append(item);
+      });
+      panel.append(list);
+    }
+
+    if (event.location || event.address) {
+      const venue = el("div", "event-panel__venue");
+      if (event.location) venue.append(el("strong", "", event.location));
+      if (event.address) venue.append(el("span", "", event.address));
+      panel.append(venue);
+    }
+
+    const actions = el("div", "event-panel__actions");
+    if (event.mapUrl) {
+      const map = el("a", "event-panel__btn event-panel__btn--map", "VIEW ON MAP");
+      map.href = event.mapUrl;
+      map.target = "_blank";
+      map.rel = "noreferrer";
+      actions.append(map);
+    }
+    if (event.icsHref) {
+      const cal = el("a", "event-panel__btn event-panel__btn--cal", "ADD TO CALENDAR");
+      cal.href = event.icsHref;
+      cal.setAttribute("download", "mehendi.ics");
+      actions.append(cal);
+    }
+    if (actions.children.length) panel.append(actions);
+
+    return panel;
+  }
+
   /* ---------- wedding events ---------- */
   function renderEvents() {
     const mount = $("#eventCards");
@@ -354,6 +424,16 @@
         place: [event.location, event.address].filter(Boolean).join(", "),
         mapUrl: event.mapLink,
         stamp: Date.parse(event.date || "") || 0,
+        location: event.location,
+        address: event.address,
+        panel: !!event.panel,
+        panelTitle: event.panelTitle,
+        hosts: event.hosts,
+        inviteLine: event.inviteLine,
+        groomName: event.groomName,
+        dateLine: event.dateLine,
+        schedule: event.schedule,
+        icsHref: event.icsHref,
       });
     });
 
@@ -369,6 +449,16 @@
           mapUrl: event.mapUrl,
           stamp: i,
           main: false,
+          location: event.location,
+          address: event.address,
+          panel: !!event.panel,
+          panelTitle: event.panelTitle,
+          hosts: event.hosts,
+          inviteLine: event.inviteLine,
+          groomName: event.groomName,
+          dateLine: event.dateLine,
+          schedule: event.schedule,
+          icsHref: event.icsHref,
         });
       });
     }
@@ -376,6 +466,10 @@
     list.sort((x, y) => x.stamp - y.stamp);
 
     list.forEach((event, index) => {
+      if (event.panel) {
+        mount.append(buildEventPanel(event, index));
+        return;
+      }
       const key = String(event.name || "").trim().toLowerCase();
       // an event with no date/time/place of its own just renders without the line
       const card = el("article", "x-event rv" + (event.main ? " is-main" : ""));
