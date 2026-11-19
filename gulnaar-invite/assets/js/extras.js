@@ -114,36 +114,42 @@
     const mount = $("#contactCards");
     if (!mount) return;
 
-    const sides = config.contacts || [];
-    const couple = config.couple || {};
+    const people = config.contacts || [];
 
-    sides.forEach((side, index) => {
-      const person = side.side === "groom" ? couple.groom : couple.bride;
+    const intlDigits = (phone) => {
+      const d = String(phone || "").replace(/\D/g, "");
+      if (d.startsWith("0")) return "92" + d.slice(1);
+      if (d.startsWith("92")) return d;
+      return d ? "92" + d : "";
+    };
+
+    people.forEach((person, index) => {
       const card = el("article", "x-contact rv");
       card.style.setProperty("--i", index);
 
-      const label = side.label || (side.side === "groom" ? "Groom’s family" : "Bride’s family");
-      const hosted = Object.prototype.hasOwnProperty.call(side, "key");
-      const name = hosted ? side.person || "" : side.person || shortName(person);
-      const sub = hosted
-        ? side.subtitle || ""
-        : side.subtitle || [person && person.relation, person && person.parents].filter(Boolean).join(" ");
+      if (person.name) card.append(el("h3", "x-contact__person", person.name));
+      if (person.phone) card.append(el("p", "x-contact__tel", person.phone));
 
-      card.append(el("span", "x-contact__label", label));
-      if (name) card.append(el("h3", "x-contact__person", name));
-      if (sub) card.append(el("p", "x-contact__sub", sub));
+      const intl = intlDigits(person.phone);
+      if (intl) {
+        const actions = el("div", "x-contact__actions");
 
-      (side.phones || []).forEach((phone) => {
-        const link = el("a", "x-btn x-btn--ghost x-contact__phone");
-        link.href = `tel:${digits(phone)}`;
-        link.textContent = phone;
-        card.append(link);
-      });
+        const wa = el("a", "x-btn x-contact__wa", "Chat on WhatsApp");
+        wa.href = `https://wa.me/${intl}`;
+        wa.target = "_blank";
+        wa.rel = "noopener";
+
+        const call = el("a", "x-btn x-contact__call", "Call");
+        call.href = `tel:+${intl}`;
+
+        actions.append(wa, call);
+        card.append(actions);
+      }
 
       mount.append(card);
     });
 
-    if (!sides.length) mount.closest("section")?.remove();
+    if (!people.length) mount.closest("section")?.remove();
   }
 
   /* ---------- RSVP form (sent over WhatsApp, no server needed) ---------- */

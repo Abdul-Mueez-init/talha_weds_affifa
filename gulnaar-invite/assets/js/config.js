@@ -260,10 +260,11 @@ dressCode: {
     ],
   },
 
-  // side: "bride" | "groom". Names and parents are taken from the couple block above.
+  // Named contact persons shown in the Hosts & contact section.
   contacts: [
-    { side: "groom", phones: ["+91 00000 00000"] },
-    { side: "bride", phones: ["+91 00000 00000"] },
+    { name: "Dr. Shahid Chaudhary", phone: "0344-7264656" },
+    { name: "Dr. Ahmed Shahid",     phone: "0318-8207094" },
+    { name: "Dr. Umer Shahid",       phone: "0301-4312602" },
   ],
 
   theme: {
