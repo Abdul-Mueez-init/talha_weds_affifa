@@ -75,9 +75,13 @@
     const mount = $("#etiquetteGrid");
     if (!mount) return;
 
-    const items = (config.etiquette && config.etiquette.items) || [];
+    const etiquette =
+      config.inviteGroup && config.inviteGroup !== "full" && config.etiquetteWalima
+        ? config.etiquetteWalima
+        : config.etiquette;
+    const items = (etiquette && etiquette.items) || [];
     const lede = $("#etiquetteIntro");
-    if (lede) lede.textContent = (config.etiquette && config.etiquette.intro) || "";
+    if (lede) lede.textContent = (etiquette && etiquette.intro) || "";
 
     items.forEach((item, index) => {
       const card = el("li", "x-etq__item rv");
@@ -243,6 +247,7 @@
       const names = `${shortName(couple.groom)} & ${shortName(couple.bride)}`;
       return [
         `Assalamu Alaikum! RSVP for ${names}`,
+        `Invitation Group: ${config.inviteGroupLabel || "Mehndi + Baraat + Walima"}`,
         `Name: ${nameInput.value.trim()}`,
         `Response: ${picked ? picked.value : ""}`,
         coming ? `Guests: ${guestSelect.value}` : "",
@@ -296,6 +301,7 @@
             Attendance: picked ? picked.value : "",
             Guests: coming ? guestSelect.value : "",
             Message: note.value.trim(),
+            "Invitation Group": config.inviteGroupLabel || "Mehndi + Baraat + Walima",
             _subject: "New RSVP — Talha & Afifa Wedding",
             _template: "table",
             _captcha: "false",
@@ -483,7 +489,16 @@
 
     const list = [];
 
+    const group = config.inviteGroup || "full";
+    const allowedForGroup = (name) => {
+      const n = String(name || "").toLowerCase();
+      if (group === "walima") return /walima|waleema/.test(n);
+      if (group === "mehndi-walima") return /walima|waleema|mehendi|mehndi|henna/.test(n);
+      return true;
+    };
+
     (config.preWeddingEvents || []).forEach((event) => {
+      if (!allowedForGroup(event.name)) return;
       list.push({
         name: event.name,
         subtitle: "",
@@ -510,6 +525,7 @@
     if (Array.isArray(config.events)) {
       list.length = 0;
       config.events.forEach((event, i) => {
+        if (!allowedForGroup(event.name)) return;
         list.push({
           name: event.name,
           subtitle: event.subtitle || "",

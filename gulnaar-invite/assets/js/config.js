@@ -253,6 +253,17 @@ dressCode: {
     ],
   },
 
+  // Shown instead of `etiquette` for the mehndi-walima and walima invite groups.
+  etiquetteWalima: {
+    intro: "A few gentle notes to keep the evening comfortable and beautiful for everyone.",
+    items: [
+      { icon: "dress", title: "Modest attire", text: "Please choose attire that honours the joy and sanctity of the occasion." },
+      { icon: "clock", title: "Arrive on time", text: "Guests arrive from 6:00 PM, and the couple makes their grand entrance at 6:30 PM — come a little early so you don't miss it." },
+      { icon: "camera", title: "Photographs with grace", text: "Capture the memories, and kindly give the official photographers space to do their work." },
+      { icon: "plate", title: "Stay for the feast", text: "The Walima dinner is served at 8:00 PM — please stay and share the feast with us." },
+    ],
+  },
+
   blessings: {
     items: [
       { icon: "crescent", title: "Your Duas", text: "Pray that our home is filled with sakinah, mawaddah and rahmah." },
@@ -276,3 +287,24 @@ dressCode: {
     champagne: "#D6A03C",   /* warm gold */
   },
 };
+
+// Guest-group resolver: ?invite=mehndi-walima | walima | all (default: full).
+// Presentation only — decides which event panels, countdown target,
+// etiquette set and RSVP tag apply. Anything unrecognised = full.
+(function () {
+  var value = (new URLSearchParams(window.location.search).get("invite") || "").toLowerCase();
+  var group =
+    value === "mehndi-walima" ? "mehndi-walima" :
+    value === "walima" ? "walima" :
+    "full";
+  window.INVITATION_CONFIG.inviteGroup = group;
+  window.INVITATION_CONFIG.inviteGroupLabel = {
+    full: "Mehndi + Baraat + Walima",
+    "mehndi-walima": "Mehndi + Walima",
+    walima: "Walima Only",
+  }[group];
+  window.INVITATION_CONFIG.countdownIsoDate =
+    group === "full"
+      ? window.INVITATION_CONFIG.wedding.isoDate
+      : "2026-12-26T18:00:00+05:00";
+})();

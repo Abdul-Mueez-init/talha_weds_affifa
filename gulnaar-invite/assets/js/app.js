@@ -1490,7 +1490,7 @@ document.addEventListener("dragstart", (event) => {
 
   /* ---------- countdown ---------- */
   function initializeCountdown() {
-    const target = new Date(config.wedding.isoDate).getTime();
+    const target = new Date(config.countdownIsoDate || config.wedding.isoDate).getTime();
     if (Number.isNaN(target) || !select("#countdownDays")) return;
 
     const tiles = select("#countdown");
