@@ -307,4 +307,8 @@ dressCode: {
     group === "full"
       ? window.INVITATION_CONFIG.wedding.isoDate
       : "2026-12-26T18:00:00+05:00";
+  window.INVITATION_CONFIG.wedding.scratchTime =
+    group === "full"
+      ? window.INVITATION_CONFIG.wedding.time
+      : "06:00 PM to 10:00 PM";
 })();
