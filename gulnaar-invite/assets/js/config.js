@@ -42,7 +42,7 @@ window.INVITATION_CONFIG = {
       parents: "Dr. & Mrs. Shahid Chaudhary",
     },
     bride: {
-      name: "Dr. Affifa Bashir",
+      name: "Dr. Afifa Bashir",
       relation: "Daughter of",
       parents: "Mr. & Mrs. Bashir Ahmed",
     },
@@ -213,7 +213,7 @@ dressCode: {
   ],
 
   rsvp: {
-    deadline: "Kindly respond by April 15, 2027",
+    deadline: "Kindly respond by December 20, 2026",
     contact: "For assistance, call +92 318 4329376",
     // Your WhatsApp number WITH country code, digits only or with +.
     // Guests' RSVP form opens WhatsApp with a pre-filled message.

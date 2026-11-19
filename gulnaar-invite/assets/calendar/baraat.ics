@@ -1,12 +1,12 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//TalhaWedsAffifa//Baraat//EN
+PRODID:-//TalhaWedsAfifa//Baraat//EN
 BEGIN:VEVENT
 UID:baraat-20261226@talha-weds-affifa.pages.dev
 DTSTAMP:20261119T000000Z
 DTSTART:20261226T060000Z
 DTEND:20261226T120000Z
-SUMMARY:Baraat — Dr. Talha Shahid & Dr. Affifa Bashir
+SUMMARY:Baraat — Dr. Talha Shahid & Dr. Afifa Bashir
 LOCATION:Deewan e Khas Event Hall, 13 Gajyani Road, Chishtian
 DESCRIPTION:Sehra Bandi 11:00 AM at the Groom's Residence, Ahmed General Hospital, Bahawalnagar Highway, Chishtian. Baraat departs 12:30 PM. Reception 1:00 PM, Nikkah 2:00 PM, Lunch 2:30 PM, Rukhsati 5:00 PM at Deewan e Khas Event Hall.
 END:VEVENT
