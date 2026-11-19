@@ -442,11 +442,7 @@
         ];
     buttons.forEach((b) => {
       if (!b.url) return;
-      const btn = el(
-        "a",
-        "event-panel__btn " + (b.kind === "map" ? "event-panel__btn--map" : "event-panel__btn--cal"),
-        b.label,
-      );
+      const btn = el("a", "event-panel__btn", b.label);
       btn.href = b.url;
       if (b.download) btn.setAttribute("download", b.download);
       else {

@@ -239,17 +239,18 @@
   min-height: 44px;
   margin-top: 12px;
   padding: 0 24px;
-  border: 1.5px solid var(--mauve);
+  border: 2px solid var(--burgundy);
   border-radius: 999px;
-  color: var(--mauve);
+  background: var(--burgundy);
+  color: var(--ivory);
   font-size: .78rem;
   font-weight: 600;
   letter-spacing: .18em;
   text-decoration: none;
-  transition: background .3s, color .3s;
+  transition: filter .25s ease;
 }
 .x-rsvpf__wa:hover,
-.x-rsvpf__wa:focus-visible { background: var(--mauve); color: #fff; }
+.x-rsvpf__wa:focus-visible { filter: brightness(1.07); }
 .x-rsvpf.is-done .x-rsvpf__success {
   margin: 0;
   font-family: var(--font-script);
@@ -258,6 +259,17 @@
   color: color-mix(in srgb, var(--mauve) 58%, var(--plum));
 }
 .x-rsvpf__submit { justify-self: center; min-width: 220px; }
+.x-rsvpf .x-btn.x-rsvpf__submit {
+  background: var(--burgundy);
+  color: var(--ivory);
+  border-color: var(--burgundy);
+}
+.x-rsvpf .x-btn.x-rsvpf__submit:hover,
+.x-rsvpf .x-btn.x-rsvpf__submit:focus-visible {
+  background: var(--burgundy);
+  color: var(--ivory);
+  filter: brightness(1.07);
+}
 .x-rsvpf.is-done { justify-items: center; text-align: center; padding-block: clamp(36px, 7vw, 56px); }
 .x-rsvpf.is-done h3 { margin: 0; font-family: var(--font-display); font-size: 1.7rem; color: var(--ink); }
 .x-rsvpf.is-done p { margin: 0; max-width: 28em; font-family: var(--font-display); font-size: 1.12rem; color: var(--ink-2); }
@@ -346,18 +358,27 @@
 .x-contact__sub { margin: 0 0 6px; font-family: var(--font-display); font-size: 1.08rem; line-height: 1.55; color: var(--ink-2); }
 .x-contact__tel { margin: 0; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: .04em; color: var(--ink); }
 .x-contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
-.x-contact .x-btn.x-contact__wa {
-  --btn-bg: linear-gradient(135deg, var(--champagne), color-mix(in srgb, var(--champagne) 55%, var(--plum)));
-  --btn-fg: var(--plum);
-  border-color: transparent;
-}
-.x-contact .x-btn.x-contact__call {
+.x-contact .x-contact__actions .x-btn {
   background: transparent;
-  color: var(--mauve);
-  border-color: var(--mauve);
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+  border-width: 2px;
 }
-.x-contact .x-btn.x-contact__call:hover,
-.x-contact .x-btn.x-contact__call:focus-visible { background: var(--mauve); color: #fff; }
+.x-contact .x-contact__actions .x-btn:last-child {
+  background: var(--burgundy);
+  color: var(--ivory);
+}
+.x-contact .x-contact__actions .x-btn:hover,
+.x-contact .x-contact__actions .x-btn:focus-visible {
+  background: color-mix(in srgb, var(--burgundy) 12%, transparent);
+  color: var(--burgundy);
+}
+.x-contact .x-contact__actions .x-btn:last-child:hover,
+.x-contact .x-contact__actions .x-btn:last-child:focus-visible {
+  background: var(--burgundy);
+  color: var(--ivory);
+  filter: brightness(1.07);
+}
 
 /* ---- Mehr: soft bubbles, pills, pastel ---- */
 .x-verse {
@@ -646,7 +667,10 @@
   justify-content: center;
   min-height: 48px;
   padding: 10px 20px;
+  border: 2px solid var(--burgundy);
   border-radius: 999px;
+  background: transparent;
+  color: var(--burgundy);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: .8rem;
@@ -654,14 +678,15 @@
   text-decoration: none;
   transition: filter .25s ease, background .25s ease, color .25s ease;
 }
-.event-panel__btn--map { background: var(--champagne); color: var(--plum); }
-.event-panel__btn--map:hover { filter: brightness(1.06); }
-.event-panel__btn--cal {
-  background: transparent;
-  border: 1.5px solid var(--mauve);
-  color: var(--mauve);
+.event-panel__btn:last-child {
+  background: var(--burgundy);
+  color: var(--ivory);
 }
-.event-panel__btn--cal:hover { background: color-mix(in srgb, var(--mauve) 10%, transparent); }
+.event-panel__btn:nth-child(2):nth-last-child(2) {
+  border-color: var(--champagne);
+  color: color-mix(in srgb, var(--champagne) 60%, var(--plum));
+}
+.event-panel__btn:hover { filter: brightness(1.06); }
 
 @media (min-width: 480px) {
   .event-panel__actions { flex-direction: row; justify-content: center; }
