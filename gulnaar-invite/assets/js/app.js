@@ -1122,7 +1122,9 @@ document.addEventListener("dragstart", (event) => {
 
   /* ---------- date: mini calendar + add-to-calendar ---------- */
   function dateParts() {
-    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(config.wedding.isoDate || "");
+    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(
+      config.wedding.displayIsoDate || config.wedding.isoDate || "",
+    );
     return match ? { year: +match[1], month: +match[2], day: +match[3] } : null;
   }
 
@@ -1142,6 +1144,7 @@ document.addEventListener("dragstart", (event) => {
     const offset = first.getUTCDay();
     const when = config.wedding || {};
     const weekday =
+      when.displayDay ||
       when.day ||
       new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).toLocaleString("en-US", {
         weekday: "long",
@@ -1181,7 +1184,7 @@ document.addEventListener("dragstart", (event) => {
     foot.append(
       createElement("span", "", weekday),
       createElement("i", ""),
-      createElement("span", "", when.time || ""),
+      createElement("span", "", when.displayTime || when.time || ""),
     );
     main.append(foot);
 
@@ -1189,7 +1192,7 @@ document.addEventListener("dragstart", (event) => {
   }
 
   function initializeCalendarLinks() {
-    const start = new Date(config.wedding.isoDate);
+    const start = new Date(config.wedding.displayIsoDate || config.wedding.isoDate);
     if (Number.isNaN(start.getTime())) return;
 
     const end = new Date(start.getTime() + 4 * 3600000);

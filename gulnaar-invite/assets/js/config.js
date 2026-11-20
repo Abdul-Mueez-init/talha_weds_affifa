@@ -308,4 +308,22 @@ dressCode: {
     group === "full"
       ? window.INVITATION_CONFIG.wedding.isoDate
       : "2026-12-27T18:00:00+05:00";
+
+  // Date shown on the scratch reveal, countdown line and mini calendar.
+  // mehndi-walima guests celebrate the Walima (Sun Dec 27); everyone
+  // else sees the Baraat date (Sat Dec 26).
+  var w = window.INVITATION_CONFIG.wedding;
+  var shown =
+    group === "mehndi-walima"
+      ? {
+          date: "December 27, 2026",
+          day: "Sunday",
+          isoDate: "2026-12-27T18:00:00+05:00",
+          time: "6:00 PM to 10:00 PM",
+        }
+      : { date: w.date, day: w.day, isoDate: w.isoDate, time: w.time };
+  w.displayDate = shown.date;
+  w.displayDay = shown.day;
+  w.displayIsoDate = shown.isoDate;
+  w.displayTime = shown.time;
 })();

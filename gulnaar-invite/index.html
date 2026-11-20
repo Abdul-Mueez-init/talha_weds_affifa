@@ -155,9 +155,9 @@
             <div id="scratchCard" class="scratch-wrap">
               <div class="date-reveal" aria-live="polite">
                 <span class="date-kicker">You’re Invited!</span>
-                <strong class="date-main" data-bind="wedding.date"></strong>
+                <strong class="date-main" data-bind="wedding.displayDate"></strong>
                 <div class="date-day">
-                  <span data-bind="wedding.day"></span>
+                  <span data-bind="wedding.displayDay"></span>
                 </div>
               </div>
               <canvas id="scratchCanvas" class="scratch-canvas" role="button" tabindex="0"
@@ -191,7 +191,7 @@
             <div><strong id="countdownMinutes">00</strong><span>minutes</span></div>
             <div><strong id="countdownSeconds">00</strong><span>seconds</span></div>
           </div>
-          <p class="x-count-date rv"><span data-bind="wedding.day"></span>, <span data-bind="wedding.date"></span></p>
+          <p class="x-count-date rv"><span data-bind="wedding.displayDay"></span>, <span data-bind="wedding.displayDate"></span></p>
         </div>
       </section>
 
