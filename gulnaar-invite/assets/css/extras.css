@@ -583,21 +583,7 @@
   font-weight: 600;
   font-size: 40px;
   line-height: 2.2;
-  color: var(--champagne, #d6a03c);
-}
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .event-panel__title {
-    background: linear-gradient(
-      160deg,
-      #eccf7d 0%,
-      var(--champagne, #d6a03c) 45%,
-      color-mix(in srgb, var(--champagne, #d6a03c) 62%, var(--plum)) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
+  color: var(--mauve);
 }
 .event-panel__title::before,
 .event-panel__title::after {
