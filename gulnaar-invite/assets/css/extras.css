@@ -583,8 +583,34 @@
   font-weight: 600;
   font-size: 40px;
   line-height: 2.2;
-  color: var(--mauve);
+  color: var(--champagne, #d6a03c);
 }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .event-panel__title {
+    background: linear-gradient(
+      160deg,
+      #eccf7d 0%,
+      var(--champagne, #d6a03c) 45%,
+      color-mix(in srgb, var(--champagne, #d6a03c) 62%, var(--plum)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+.event-panel__title::before,
+.event-panel__title::after {
+  content: "";
+  display: block;
+  width: min(130px, 46vw);
+  height: 16px;
+  margin: 2px auto;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 18'%3E%3Cg fill='none' stroke='%23d6a03c' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M6 9c16-7 30-7 44 0s30 7 44 0 26-7 30 0'/%3E%3Cpath d='M6 9c16 7 30 7 44 0s30-7 44 0 26 7 30 0' opacity='.5'/%3E%3Cpath d='M65 3.5l4.5 5.5-4.5 5.5-4.5-5.5z' fill='%23d6a03c' stroke='none'/%3E%3C/g%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+.event-panel__title::before { margin-bottom: 0; }
+.event-panel__title::after { margin-top: 6px; }
 .event-panel__hosts {
   margin: 8px 0 0;
   font-family: var(--font-script);
