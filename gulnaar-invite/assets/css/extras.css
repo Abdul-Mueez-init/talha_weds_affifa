@@ -25,13 +25,19 @@
   -webkit-mask: var(--glyph) center / contain no-repeat;
   mask: var(--glyph) center / contain no-repeat;
 }
+@font-face {
+  font-family: "Amoshref Thulth";
+  src: url("../fonts/amoshref-thulth.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
 .x-verse__ar {
   margin: 0 0 18px;
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 5.5vw, 2rem);
-  line-height: 2.1;
-  color: var(--champagne);
+  font-family: "Amoshref Thulth", "Amiri", serif;
+  font-size: clamp(1.6rem, 5.8vw, 2.2rem);
+  line-height: 2.2;
+  color: var(--champagne, #d6a03c);
 }
 .x-verse__en {
   max-width: 30em;

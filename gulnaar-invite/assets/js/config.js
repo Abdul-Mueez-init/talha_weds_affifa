@@ -314,7 +314,7 @@ dressCode: {
   // else sees the Baraat date (Sat Dec 26).
   var w = window.INVITATION_CONFIG.wedding;
   var shown =
-    group === "mehndi-walima"
+    group !== "full"
       ? {
           date: "December 27, 2026",
           day: "Sunday",
