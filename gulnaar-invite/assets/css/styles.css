@@ -1639,10 +1639,10 @@ main#invitation {
 }
 .x-dua p:first-child {
   margin: 0 0 10px;
-  font-family: "Scheherazade New", "Amiri", serif;
-  font-size: clamp(1.4rem, 5vw, 1.8rem);
-  line-height: 2.1;
-  color: var(--accent);
+  font-family: "Amoshref Thulth", "Amiri", serif;
+  font-size: clamp(1.5rem, 5.2vw, 2rem);
+  line-height: 2.2;
+  color: var(--champagne, #d6a03c);
 }
 .x-dua p + p {
   margin: 0;
