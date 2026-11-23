@@ -831,7 +831,6 @@ document.addEventListener("dragstart", (event) => {
     renderFestivities();
     renderGallery();
     renderCalendar();
-    renderRsvpNote();
     renderDua();
   }
 
@@ -1539,37 +1538,6 @@ document.addEventListener("dragstart", (event) => {
 
     select("[data-dua]", dua).textContent = config.copy.dua;
     select("[data-dua-en]", dua).textContent = config.copy.duaTranslation || "";
-  }
-
-  function renderRsvpNote() {
-    const mount = select("#rsvpNote");
-    if (!mount) return;
-
-    const { deadline, contact, message } = config.rsvp || {};
-    if (!deadline && !contact && !message) {
-      mount.remove();
-      return;
-    }
-
-    if (message) mount.append(createElement("p", "", message));
-
-    if (deadline) mount.append(createElement("p", "", deadline));
-    if (contact) mount.append(createElement("p", "", contact));
-
-    const phone = /\+?\d[\d\s().-]{8,}\d/.exec(contact || "");
-    if (phone) {
-      const digits = phone[0].replace(/[^\d+]/g, "");
-      const actions = createElement("div", "x-actions");
-      const call = createElement("a", "x-btn", "Call");
-      const chat = createElement("a", "x-btn x-btn--ghost", "WhatsApp");
-
-      call.href = `tel:${digits}`;
-      chat.href = `https://wa.me/${digits.replace(/\D/g, "")}`;
-      chat.target = "_blank";
-      chat.rel = "noreferrer";
-      actions.append(call, chat);
-      mount.append(actions);
-    }
   }
 
   /* ---------- scroll reveal ---------- */
