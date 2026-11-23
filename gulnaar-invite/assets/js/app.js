@@ -829,7 +829,6 @@ document.addEventListener("dragstart", (event) => {
     renderHosts();
     renderProgram();
     renderFestivities();
-    renderPalette();
     renderGallery();
     renderCalendar();
     renderRsvpNote();
@@ -975,20 +974,6 @@ document.addEventListener("dragstart", (event) => {
       }
 
       list.append(card);
-    });
-  }
-
-  /* ---------- dress code palette ---------- */
-  function renderPalette() {
-    const palette = select("#dressPalette");
-    if (!palette) return;
-
-    (config.dressCode?.swatches || []).forEach((color, index) => {
-      const chip = createElement("i");
-      chip.style.setProperty("--sw", color);
-      chip.style.setProperty("--i", index);
-      chip.title = color;
-      palette.append(chip);
     });
   }
 
